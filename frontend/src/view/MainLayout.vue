@@ -40,11 +40,6 @@
               Income
             </ion-item>
           </router-link>
-          <router-link to="/income">
-            <ion-item >
-              Income
-            </ion-item>
-          </router-link>
           <router-link to="/income-type">
             <ion-item >
               Income Type

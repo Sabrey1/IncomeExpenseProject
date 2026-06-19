@@ -6,7 +6,7 @@ def test_connection():
     try:
         with engine.connect() as conn:
             result = conn.execute(text("SELECT 1"))
-            print("✅ PostgreSQL Connected")
+            print("✅ MySQL Connected")
             print("Result:", result.fetchone())
 
     except Exception as e:

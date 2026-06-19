@@ -1,5 +1,5 @@
 from database import Base, engine
-import model  # IMPORTANT
+import app.models.customer
 
 print("Creating tables...")
 
