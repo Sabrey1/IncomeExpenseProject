@@ -18,7 +18,7 @@ def create(expense: ExpenseCreate, db: Session = Depends(get_db)):
 
 # READ ALL
 @router.get("/", response_model=List[ExpenseResponse])
-def read_expense(db: Session = Depends(get_db)):
+def read_expenses(db: Session = Depends(get_db)):
     return expense_service.get_expenses(db)
 
 

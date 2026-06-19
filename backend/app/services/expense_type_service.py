@@ -13,7 +13,7 @@ def create_expense_type(db: Session, expense_type: ExpenseTypeCreate):
 
 
 # READ ALL
-def get_expenses_types(db: Session):
+def get_expense_types(db: Session):
     return db.query(ExpenseType).all()
 
 

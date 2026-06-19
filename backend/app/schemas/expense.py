@@ -11,8 +11,8 @@ class ExpenseCreate(BaseModel):
 
 class ExpenseResponse(BaseModel):
     id: int
-    expense_type_id: str
-    currency_id: str
+    expense_type_id: int
+    currency_id: int
     title: str
     payment_method_id: int
     amount: int

@@ -20,6 +20,7 @@ import '@ionic/vue/css/display.css'
 
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import Button from 'primevue/button';
 
 
 import './style.css'
@@ -37,6 +38,7 @@ app.use(PrimeVue, {
 
 app.component('DataTable', DataTable);
 app.component('Column', Column);
+app.component('Button', Button);
 
 router.isReady().then(() => {
   app.mount('#app')

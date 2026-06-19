@@ -13,7 +13,7 @@ def create_income(db: Session, income: IncomeCreate):
 
 
 # READ ALL
-def incomes(db: Session):
+def get_incomes(db: Session):
     return db.query(Income).all()
 
 
@@ -28,7 +28,7 @@ def update_income(db: Session, income_id: int, income_data: IncomeCreate):
     if not income:
         return None
 
-    income.expense_type_id = income_data.expense_type_id
+    income.income_type_id = income_data.income_type_id
     income.currency_id = income_data.currency_id
     income.title = income_data.title
     income.payment_method_id = income_data.payment_method_id

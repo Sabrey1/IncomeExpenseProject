@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class IncomeCreate(BaseModel):
-    expense_type_id: int
+    income_type_id: int
     currency_id: int
     title: str
     payment_method_id: int
@@ -11,8 +11,8 @@ class IncomeCreate(BaseModel):
 
 class IncomeResponse(BaseModel):
     id: int
-    expense_type_id: str
-    currency_id: str
+    income_type_id: int
+    currency_id: int
     title: str
     payment_method_id: int
     amount: int
