@@ -5,11 +5,12 @@
         <div class="mb-6 rounded-lg border border-rose-100 bg-white p-5 shadow-sm">
           <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <p class="mb-1 text-sm font-extrabold uppercase text-rose-600">Spending</p>
               <h1 class="m-0 text-3xl font-extrabold text-slate-950">Expenses</h1>
               <p class="mt-2 text-sm text-slate-500">Track outgoing money by type, method, and amount.</p>
             </div>
-            <Button label="Add Expense" severity="danger" class="w-full md:w-auto" />
+
+            <ComAddExpense />
+
           </div>
         </div>
 
@@ -64,6 +65,8 @@
 import { computed, onMounted, ref } from 'vue'
 import { IonContent } from '@ionic/vue'
 import { useExpense } from "@/composable/useExpense.js"
+
+import ComAddExpense from "@/view/expense/components/ComAddExpense.vue"
 
 const { expense, loading, getExpenseList } = useExpense()
 const search = ref('')

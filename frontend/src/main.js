@@ -26,6 +26,7 @@ import InputText from "primevue/inputtext";
 import InputIcon from "primevue/inputicon";
 import IconField from "primevue/iconfield";
 import Tag from "primevue/tag";
+import Dialog from 'primevue/dialog';
 
 
 import './style.css'
@@ -48,6 +49,7 @@ app.component('InputText', InputText);
 app.component('InputIcon', InputIcon);
 app.component('IconField', IconField);
 app.component('Tag', Tag);
+app.component('Dialog', Dialog);
 
 
 router.isReady().then(() => {

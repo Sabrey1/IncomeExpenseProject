@@ -109,13 +109,13 @@ const { logout } = useAuth()
 
 const menuItems = [
   { label: 'Dashboard', to: '/dashboard', icon: gridOutline },
-  { label: 'Currency', to: '/currency', icon: cashOutline },
-  { label: 'Exchange Rate', to: '/exchange_rate', icon: swapHorizontalOutline },
   { label: 'Expense', to: '/expense', icon: receiptOutline },
-  { label: 'Expense Type', to: '/expense-type', icon: pricetagsOutline },
   { label: 'Income', to: '/income', icon: trendingUpOutline },
+  { label: 'Expense Type', to: '/expense-type', icon: pricetagsOutline },
   { label: 'Income Type', to: '/income-type', icon: walletOutline },
+  { label: 'Exchange Rate', to: '/exchange_rate', icon: swapHorizontalOutline },
   { label: 'Payment Method', to: '/payment-method', icon: cardOutline },
+  { label: 'Currency', to: '/currency', icon: cashOutline },
   { label: 'Role', to: '/role', icon: shieldCheckmarkOutline },
   { label: 'User', to: '/user', icon: peopleOutline },
 ]
