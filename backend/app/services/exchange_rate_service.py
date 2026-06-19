@@ -5,7 +5,7 @@ from app.schemas.exchange_rate import ExchangeRateCreate
 
 # CREATE
 def create_exchange_rate(db: Session, exchange_rate: ExchangeRateCreate):
-    db_exchange_rate = ExchangeRate(from_currecy_id = exchange_rate.from_currecy_id, to_currency_id = exchange_rate.to_currency_id, rate = exchange_rate.rate)
+    db_exchange_rate = ExchangeRate(from_currency_id = exchange_rate.from_currency_id, to_currency_id = exchange_rate.to_currency_id, rate = exchange_rate.rate)
     db.add(db_exchange_rate)
     db.commit()
     db.refresh(db_exchange_rate)

@@ -29,10 +29,10 @@ import { ref, onMounted } from 'vue'
 import { IonContent } from '@ionic/vue'
 
 import { useExpenseType } from "@/composable/useExpenseType.js"
-const { expenseType,
-    getIncomeTypeList } = useExpenseType()
+const {expenseType,
+    getExpenseList } = useExpenseType()
 
 onMounted(() => {
-  getIncomeTypeList()
+  getExpenseList()
 })
 </script>

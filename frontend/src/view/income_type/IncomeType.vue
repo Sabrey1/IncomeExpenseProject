@@ -29,9 +29,9 @@ import { IonContent } from '@ionic/vue'
 
 import { useIncomeType } from "@/composable/useIncomeType.js"
 const { incomeType,
-    getIncomeList } = useIncomeType()
+    getIncomeTypeList } = useIncomeType()
 
 onMounted(() => {
-  getIncomeList()
+  getIncomeTypeList()
 })
 </script>
