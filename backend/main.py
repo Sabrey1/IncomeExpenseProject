@@ -3,9 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from database import engine, Base
 
-from app.routers import user, customer
+from app.routers import user, customer, roles, currency, payment_method
 
-import app.models.user, app.models.customer
+import app.models.user, app.models.customer, app.models.role, app.models.currency, app.models.payment_method
 
 app = FastAPI()
 
@@ -21,8 +21,6 @@ app.add_middleware(
 
 app.include_router(user.router, prefix="/users", tags=["Users"])
 app.include_router(customer.router, prefix="/customers", tags=["Customers"])
-
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello, FastAPI!"}
+app.include_router(roles.router, prefix="/roles", tags=["Roles"])
+app.include_router(currency.router, prefix="/currencies", tags=["Currencies"])
+app.include_router(payment_method.router, prefix="/payment-methods", tags=["Payment Methods"])
