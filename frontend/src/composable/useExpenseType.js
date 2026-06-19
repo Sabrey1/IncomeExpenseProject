@@ -7,14 +7,21 @@ export function useExpenseType() {
   const loading = ref(false)
  
  async function getExpenseList(){
-    const res = await api.get('/expense-types')
-    if(res.data){
-        expenseType.value = res.data
+    loading.value = true
+
+    try {
+      const res = await api.get('/expense-types')
+      if(res.data){
+          expenseType.value = res.data
+      }
+    } finally {
+      loading.value = false
     }
   }
   
   return {
     expenseType,
+    loading,
     getExpenseList
   }
 }

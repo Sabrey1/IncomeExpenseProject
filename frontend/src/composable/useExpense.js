@@ -7,14 +7,21 @@ export function useExpense() {
   const loading = ref(false)
  
  async function getExpenseList(){
-    const res = await api.get('/expenses')
-    if(res.data){
-        expense.value = res.data
+    loading.value = true
+
+    try {
+      const res = await api.get('/expenses')
+      if(res.data){
+          expense.value = res.data
+      }
+    } finally {
+      loading.value = false
     }
   }
   
   return {
     expense,
+    loading,
     getExpenseList
   }
 }

@@ -7,14 +7,21 @@ export function useExchangeRate() {
   const loading = ref(false)
  
  async function getExchangeRateList(){
-    const res = await api.get('/exchange-rates')
-    if(res.data){
-        exchangeRate.value = res.data
+    loading.value = true
+
+    try {
+      const res = await api.get('/exchange-rates')
+      if(res.data){
+          exchangeRate.value = res.data
+      }
+    } finally {
+      loading.value = false
     }
   }
   
   return {
     exchangeRate,
+    loading,
     getExchangeRateList
   }
 }

@@ -7,13 +7,19 @@ export function useUser() {
   const loading = ref(false)
  
  async function getUserList(){
-    const res = await api.get('/users').then(res => {
+    loading.value = true
+
+    try {
+      const res = await api.get('/users')
       users.value = res.data
-    })
+    } finally {
+      loading.value = false
+    }
   }
   
   return {
     users,
+    loading,
     getUserList
   }
 }

@@ -21,6 +21,11 @@ import '@ionic/vue/css/display.css'
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
+ 
+import InputText from "primevue/inputtext";
+import InputIcon from "primevue/inputicon";
+import IconField from "primevue/iconfield";
+import Tag from "primevue/tag";
 
 
 import './style.css'
@@ -39,6 +44,11 @@ app.use(PrimeVue, {
 app.component('DataTable', DataTable);
 app.component('Column', Column);
 app.component('Button', Button);
+app.component('InputText', InputText);
+app.component('InputIcon', InputIcon);
+app.component('IconField', IconField);
+app.component('Tag', Tag);
+
 
 router.isReady().then(() => {
   app.mount('#app')

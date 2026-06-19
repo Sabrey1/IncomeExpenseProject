@@ -7,14 +7,21 @@ export function useCurrency() {
   const loading = ref(false)
  
  async function getCurrencyList(){
-    const res = await api.get('/currencies')
-    if(res.data){
-        currency.value = res.data
+    loading.value = true
+
+    try {
+      const res = await api.get('/currencies')
+      if(res.data){
+          currency.value = res.data
+      }
+    } finally {
+      loading.value = false
     }
   }
   
   return {
     currency,
+    loading,
     getCurrencyList
   }
 }

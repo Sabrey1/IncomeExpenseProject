@@ -7,14 +7,21 @@ export function useIncomeType() {
   const loading = ref(false)
  
  async function getIncomeTypeList(){
-    const res = await api.get('/income-types')
-    if(res.data){
-        incomeType.value = res.data
+    loading.value = true
+
+    try {
+      const res = await api.get('/income-types')
+      if(res.data){
+          incomeType.value = res.data
+      }
+    } finally {
+      loading.value = false
     }
   }
   
   return {
     incomeType,
+    loading,
     getIncomeTypeList
   }
 }

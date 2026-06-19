@@ -40,3 +40,20 @@ def delete_user(db: Session, user_id: int):
         db.delete(user)
         db.commit()
     return user
+
+
+def login(db: Session, username: str, password: str):
+    user = db.query(User).filter(User.username == username and User.password == password).first()
+
+    if not user:
+        return {
+            "success": False,
+            "message": "Invalid username or password",
+            "data": None
+        }
+   
+    return {
+        "success": True,
+        "message": "Login successfully",
+        "data": user
+    }
