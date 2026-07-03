@@ -28,6 +28,9 @@ import IconField from "primevue/iconfield";
 import Tag from "primevue/tag";
 import Dialog from 'primevue/dialog';
 
+import Textarea from 'primevue/textarea';
+import Select from 'primevue/select';
+
 
 import './style.css'
 
@@ -50,6 +53,8 @@ app.component('InputIcon', InputIcon);
 app.component('IconField', IconField);
 app.component('Tag', Tag);
 app.component('Dialog', Dialog);
+app.component('Textarea', Textarea);
+app.component('Select', Select);
 
 
 router.isReady().then(() => {

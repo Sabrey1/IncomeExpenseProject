@@ -9,7 +9,10 @@
               <p class="mt-2 text-sm text-slate-500">Track outgoing money by type, method, and amount.</p>
             </div>
 
-            <ComAddExpense />
+            <div class="p-4 m-5">
+              <ComAddExpense />
+            </div>
+            
 
           </div>
         </div>
