@@ -30,7 +30,7 @@ import Dialog from 'primevue/dialog';
 
 import Textarea from 'primevue/textarea';
 import Select from 'primevue/select';
-
+import Checkbox from 'primevue/checkbox';
 
 import './style.css'
 
@@ -55,6 +55,7 @@ app.component('Tag', Tag);
 app.component('Dialog', Dialog);
 app.component('Textarea', Textarea);
 app.component('Select', Select);
+app.component('Checkbox', Checkbox);
 
 
 router.isReady().then(() => {

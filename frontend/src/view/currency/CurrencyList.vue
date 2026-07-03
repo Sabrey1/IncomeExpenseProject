@@ -10,7 +10,7 @@
             </p>
           </div>
 
-          <Button label="Add Currency" severity="success" class="w-full sm:w-auto" />
+          <ComAddCurrency />
         </div>
 
         <div class="rounded-lg border border-slate-200 bg-white shadow-sm">
@@ -81,6 +81,8 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
 import { IonContent } from '@ionic/vue'
+
+import ComAddCurrency from '@/view/currency/components/ComAddCurrency.vue'
 
 import { useCurrency } from "@/composable/useCurrency.js"
 const { currency, loading, getCurrencyList } = useCurrency()

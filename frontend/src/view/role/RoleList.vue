@@ -15,11 +15,8 @@
           </p>
         </div>
 
-        <Button
-          label="Add Role"
-          icon="pi pi-plus"
-          severity="info"
-        />
+        <ComAddRole />
+        
       </div>
 
       <!-- Statistics -->
@@ -144,6 +141,8 @@ import { computed, onMounted, ref } from "vue";
 import { IonContent } from "@ionic/vue";
 
 import { useRole } from "@/composable/useRole.js";
+
+import ComAddRole from '@/view/role/components/ComAddRole.vue'
 
 const search = ref("");
 
