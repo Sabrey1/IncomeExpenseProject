@@ -19,7 +19,6 @@
 
                 <div class="flex items-center gap-2">
                     <Checkbox v-model="small" binary inputId="small-checkbox" size="small" />
-                    <Label for="small-checkbox" class="text-sm">Enable</Label>
                 </div>
                 
 
