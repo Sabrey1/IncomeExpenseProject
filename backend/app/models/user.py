@@ -8,3 +8,5 @@ class User(Base):
     username = Column(String(100), unique=True, index=True)
     email = Column(String(100), unique=True, index=True)
     password = Column(String(100))
+    role_id = Column(Integer, nullable=False)
+    is_active = Column(Integer, default=1)

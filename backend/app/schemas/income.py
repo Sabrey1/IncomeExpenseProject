@@ -8,7 +8,6 @@ class IncomeCreate(BaseModel):
     amount: int
     note: str
 
-
 class IncomeResponse(BaseModel):
     id: int
     income_type_id: int
@@ -17,7 +16,6 @@ class IncomeResponse(BaseModel):
     payment_method_id: int
     amount: int
     note: str
-
 
     class Config:
         from_attributes = True

@@ -18,10 +18,26 @@ export function useCurrency() {
       loading.value = false
     }
   }
+
+  async function addCurrency(data){
+    try{
+      loading.value = true
+
+      const res = await api.post('/currencies', data)
+      if(res.data){
+        currency.value.push(res.data)
+      }
+    }catch(err){
+      console.error('Error adding currency:', err)
+    }finally{
+      loading.value = false
+    }
+  }
   
   return {
     currency,
     loading,
-    getCurrencyList
+    getCurrencyList,
+    addCurrency
   }
 }

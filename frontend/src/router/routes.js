@@ -14,14 +14,14 @@ import UserList from '@/view/user/UserList.vue'
 
 export const routes = [
   {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
     path: '/',
     component: MainLayout,
     children: [
-      {
-        path: 'login',
-        name: 'login',
-        component: Login
-      },
       {
         path: '',
         redirect: '/dashboard'

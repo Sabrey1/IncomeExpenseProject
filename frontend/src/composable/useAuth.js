@@ -1,4 +1,5 @@
-import { ref } from "vue"
+import { ref, computed } from "vue"
+import { useRoute } from "vue-router"
 import api from "@/services/api-service"
 
 export function getAuthUser() {
@@ -11,13 +12,13 @@ export function getAuthUser() {
   try {
     return JSON.parse(savedUser)
   } catch {
-    localStorage.setItem("user", "")
+    localStorage.removeItem("user")
     return null
   }
 }
 
 export function isAuthenticated() {
-  return !!getAuthUser()
+  return !!getAuthUser() && !!localStorage.getItem("access_token")
 }
 
 export function useAuth() {
@@ -30,7 +31,7 @@ export function useAuth() {
     error.value = ""
 
     try {
-      const res = await api.post("/users/login", null, {
+      const res = await api.post("/login/login", null, {
         params: {
           username,
           password,
@@ -40,17 +41,21 @@ export function useAuth() {
       if (!res.data?.success) {
         error.value = res.data?.message || "Invalid username or password"
         user.value = null
-        localStorage.setItem("user", "")
+        localStorage.removeItem("user")
+        localStorage.removeItem("access_token")
         return res.data
       }
 
-      user.value = res.data.data
-      localStorage.setItem("user", JSON.stringify(res.data.data))
+      const authData = res.data.data
+      user.value = authData.user ?? authData
+      localStorage.setItem("user", JSON.stringify(user.value))
+      localStorage.setItem("access_token", authData.access_token)
       return res.data
     } catch (err) {
       error.value = err.response?.data?.detail || err.message || "Login failed"
       user.value = null
-      localStorage.setItem("user", "")
+      localStorage.removeItem("user")
+      localStorage.removeItem("access_token")
       return {
         success: false,
         message: error.value,
@@ -65,7 +70,11 @@ export function useAuth() {
     user.value = null
     error.value = ""
     localStorage.removeItem("user")
+    localStorage.removeItem("access_token")
   }
+
+  const route = useRoute()
+  const isAuth = computed(() => route.name === 'login')
 
   return {
     user,
@@ -73,5 +82,6 @@ export function useAuth() {
     error,
     login,
     logout,
+    isAuth,
   }
 }

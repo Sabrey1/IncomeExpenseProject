@@ -105,7 +105,7 @@ import { useAuth } from '@/composable/useAuth'
 
 const router = useRouter()
 const route = useRoute()
-const { logout } = useAuth()
+const { logout, isAuth } = useAuth()
 
 const menuItems = [
   { label: 'Dashboard', to: '/dashboard', icon: gridOutline },

@@ -5,7 +5,6 @@ class CurrencyCreate(BaseModel):
     symbol: str
     is_default: bool
 
-
 class CurrencyResponse(BaseModel):
     id: int
     code: str
@@ -14,3 +13,7 @@ class CurrencyResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class CurrencySimple(BaseModel):
+    code: str
+    symbol: str

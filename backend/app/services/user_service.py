@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
 from app.models.user import User
-from app.schemas.user import UserCreate
-
+from app.schemas.user import UserCreate, UserResponse
 
 # CREATE
 def create_user(db: Session, user: UserCreate):
@@ -11,16 +10,15 @@ def create_user(db: Session, user: UserCreate):
     db.refresh(db_user)
     return db_user
 
-
 # READ ALL
 def get_users(db: Session):
-    return db.query(User).all()
-
+    users = db.query(User).all()
+    return [UserResponse.from_orm(user) for user in users]
 
 # READ ONE
 def get_user(db: Session, user_id: int):
-    return db.query(User).filter(User.id == user_id).first()
-
+    user = db.query(User).filter(User.id == user_id).first()
+    return UserResponse.from_orm(user) if user else None
 
 # UPDATE
 def update_user(db: Session, user_id: int, user_data: UserCreate):
@@ -28,10 +26,11 @@ def update_user(db: Session, user_id: int, user_data: UserCreate):
     if user:
         user.username = user_data.username
         user.email = user_data.email
+        user.role_id = user_data.role_id
+        user.is_active = user_data.is_active
         db.commit()
         db.refresh(user)
     return user
-
 
 # DELETE
 def delete_user(db: Session, user_id: int):
@@ -40,20 +39,3 @@ def delete_user(db: Session, user_id: int):
         db.delete(user)
         db.commit()
     return user
-
-
-def login(db: Session, username: str, password: str):
-    user = db.query(User).filter(User.username == username and User.password == password).first()
-
-    if not user:
-        return {
-            "success": False,
-            "message": "Invalid username or password",
-            "data": None
-        }
-   
-    return {
-        "success": True,
-        "message": "Login successfully",
-        "data": user
-    }

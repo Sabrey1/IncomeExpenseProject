@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 from app.models.income import Income
 from app.schemas.income import IncomeCreate
 
-
 # CREATE
 def create_income(db: Session, income: IncomeCreate):
     db_income = Income(**income.dict())
@@ -11,16 +10,13 @@ def create_income(db: Session, income: IncomeCreate):
     db.refresh(db_income)
     return db_income
 
-
 # READ ALL
 def get_incomes(db: Session):
     return db.query(Income).all()
 
-
 # READ ONE
 def get_income(db: Session, income_id: int):
     return db.query(Income).filter(Income.id == income_id).first()
-
 
 def update_income(db: Session, income_id: int, income_data: IncomeCreate):
     income = db.query(Income).filter(Income.id == income_id).first()
@@ -39,7 +35,6 @@ def update_income(db: Session, income_id: int, income_data: IncomeCreate):
     db.refresh(income)
 
     return income
-
 
 def delete_income(db: Session, income_id: int):
     income = db.query(Income).filter(Income.id == income_id).first()

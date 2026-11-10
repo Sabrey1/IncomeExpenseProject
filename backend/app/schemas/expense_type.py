@@ -4,7 +4,6 @@ class ExpenseTypeCreate(BaseModel):
     name: str
     description: str
 
-
 class ExpenseTypeResponse(BaseModel):
     id: int
     name: str

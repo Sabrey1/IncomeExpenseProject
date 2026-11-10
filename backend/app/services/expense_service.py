@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 from app.models.expense import Expense
 from app.schemas.expense import ExpenseCreate
 
-
 # CREATE
 def create_expense(db: Session, expense: ExpenseCreate):
     db_expense = Expense(**expense.dict())
@@ -11,16 +10,13 @@ def create_expense(db: Session, expense: ExpenseCreate):
     db.refresh(db_expense)
     return db_expense
 
-
 # READ ALL
 def get_expenses(db: Session):
     return db.query(Expense).all()
 
-
 # READ ONE
 def get_expense(db: Session, expense_id: int):
     return db.query(Expense).filter(Expense.id == expense_id).first()
-
 
 def update_expense(db: Session, expense_id: int, expense_data: ExpenseCreate):
     expense = db.query(Expense).filter(Expense.id == expense_id).first()
@@ -39,7 +35,6 @@ def update_expense(db: Session, expense_id: int, expense_data: ExpenseCreate):
     db.refresh(expense)
 
     return expense
-
 
 def delete_expense(db: Session, expense_id: int):
     expense = db.query(Expense).filter(Expense.id == expense_id).first()

@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 from app.models.expense_type import ExpenseType
 from app.schemas.expense_type import ExpenseTypeCreate
 
-
 # CREATE
 def create_expense_type(db: Session, expense_type: ExpenseTypeCreate):
     db_expense_type = ExpenseType(**expense_type.dict())
@@ -11,16 +10,13 @@ def create_expense_type(db: Session, expense_type: ExpenseTypeCreate):
     db.refresh(db_expense_type)
     return db_expense_type
 
-
 # READ ALL
 def get_expense_types(db: Session):
     return db.query(ExpenseType).all()
 
-
 # READ ONE
 def get_expense_type(db: Session, expense_type_id: int):
     return db.query(ExpenseType).filter(ExpenseType.id == expense_type_id).first()
-
 
 def update_expense_type(db: Session, expense_type_id: int, expense_type_data: ExpenseTypeCreate):
     expense_type = db.query(ExpenseType).filter(ExpenseType.id == expense_type_id).first()
@@ -35,7 +31,6 @@ def update_expense_type(db: Session, expense_type_id: int, expense_type_data: Ex
     db.refresh(expense_type)
 
     return expense_type
-
 
 def delete_expense_type(db: Session, expense_type_id: int):
     expense_type = db.query(ExpenseType).filter(ExpenseType.id == expense_type_id).first()

@@ -96,13 +96,13 @@
             </Column>
 
             <Column
-              field="from_currency_id"
+              field="from_currency"
               header="From Currency"
               sortable
             />
 
             <Column
-              field="to_currency_id"
+              field="to_currency"
               header="To Currency"
               sortable
             />

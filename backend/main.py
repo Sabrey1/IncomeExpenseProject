@@ -1,16 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Depends
 from fastapi.middleware.cors import CORSMiddleware
-
 from database import engine, Base
-
-from app.routers import user, customer, roles, currency, payment_method, expense_type, expense, income_type, income, exchange_rate
-
-import app.models.user, app.models.customer, app.models.role, app.models.currency, app.models.payment_method, app.models.expense_type, app.models.expense, app.models.income_type, app.models.income, app.models.exchange_rate
+from app.core.dependencies import get_current_user
+from app.routers import user, customer, roles, currency, payment_method, expense_type, expense, income_type, income, exchange_rate, auth
 
 app = FastAPI()
-
 Base.metadata.create_all(bind=engine)
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Vite default
@@ -19,13 +14,28 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(user.router, prefix="/users", tags=["Users"])
-app.include_router(customer.router, prefix="/customers", tags=["Customers"])
-app.include_router(roles.router, prefix="/roles", tags=["Roles"])
-app.include_router(currency.router, prefix="/currencies", tags=["Currencies"])
-app.include_router(payment_method.router, prefix="/payment-methods", tags=["Payment Methods"])
-app.include_router(expense_type.router, prefix="/expense-types", tags=["Expense Types"])
-app.include_router(expense.router, prefix="/expenses", tags=["Expenses"])
-app.include_router(income_type.router, prefix="/income-types", tags=["Income Types"])
-app.include_router(income.router, prefix="/incomes", tags=["Incomes"])
-app.include_router(exchange_rate.router, prefix="/exchange-rates", tags=["Exchange Rates"])
+API_PREFIX = "/v1/api"
+
+app.include_router(auth.router, prefix=f"{API_PREFIX}/login", tags=["Authentication"])
+
+
+protected_routers = [
+    (user.router, "users", "Users"),
+    (customer.router, "customers", "Customers"),
+    (roles.router, "roles", "Roles"),
+    (currency.router, "currencies", "Currencies"),
+    (payment_method.router, "payment-methods", "Payment Methods"),
+    (expense_type.router, "expense-types", "Expense Types"),
+    (expense.router, "expenses", "Expenses"),
+    (income_type.router, "income-types", "Income Types"),
+    (income.router, "incomes", "Incomes"),
+    (exchange_rate.router, "exchange-rates", "Exchange Rates"),
+]
+
+for router, path, tag in protected_routers:
+    app.include_router(
+        router,
+        prefix=f"{API_PREFIX}/{path}",
+        tags=[tag],
+        dependencies=[Depends(get_current_user)]
+    )

@@ -18,10 +18,26 @@ export function usePaymentMethod() {
       loading.value = false
     }
   }
+
+  async function addPaymentMethod(data){
+    try{
+      loading.value = true
+
+      const res = await api.post('/payment-methods', data)
+      if(res.data){
+        paymentMethod.value.push(res.data)
+      }
+    }catch(err){
+      console.error('Error adding payment method:', err)
+    }finally{
+      loading.value = false
+    }
+  }
   
   return {
     paymentMethod,
     loading,
-    getPaymentMethodList
+    getPaymentMethodList,
+    addPaymentMethod
   }
 }

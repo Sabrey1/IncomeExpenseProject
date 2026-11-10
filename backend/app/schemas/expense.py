@@ -8,7 +8,6 @@ class ExpenseCreate(BaseModel):
     amount: int
     note: str
 
-
 class ExpenseResponse(BaseModel):
     id: int
     expense_type_id: int
@@ -17,7 +16,6 @@ class ExpenseResponse(BaseModel):
     payment_method_id: int
     amount: int
     note: str
-
 
     class Config:
         from_attributes = True

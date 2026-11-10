@@ -16,11 +16,8 @@
           </p>
         </div>
 
-        <Button
-          label="Add Payment Method"
-          icon="pi pi-plus"
-          severity="info"
-        />
+        
+          <ComAddPaymentMethod />
       </div>
 
       <!-- Stats -->
@@ -132,6 +129,7 @@ import { computed, onMounted, ref } from "vue";
 import { IonContent } from "@ionic/vue";
 
 import { usePaymentMethod } from "@/composable/usePaymentMethod.js";
+import ComAddPaymentMethod from "@/view/payment_method/components/ComAddPaymentMethod.vue";
 
 const search = ref("");
 

@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 from app.models.exchange_rate import ExchangeRate
 from app.schemas.exchange_rate import ExchangeRateCreate
 
-
 # CREATE
 def create_exchange_rate(db: Session, exchange_rate: ExchangeRateCreate):
     db_exchange_rate = ExchangeRate(from_currency_id = exchange_rate.from_currency_id, to_currency_id = exchange_rate.to_currency_id, rate = exchange_rate.rate)
@@ -11,16 +10,21 @@ def create_exchange_rate(db: Session, exchange_rate: ExchangeRateCreate):
     db.refresh(db_exchange_rate)
     return db_exchange_rate
 
-
 # READ ALL
 def get_exchange_rates(db: Session):
-    return db.query(ExchangeRate).all()
-
+    exchange_rates = db.query(ExchangeRate).all()
+    return [
+        {
+            "id": exchange_rate.id,
+            "from_currency": exchange_rate.from_currency.code,
+            "to_currency": exchange_rate.to_currency.code,
+            "rate": exchange_rate.rate
+        }for exchange_rate in exchange_rates
+    ]
 
 # READ ONE
 def get_exchange_rate(db: Session, exchange_rate_id: int):
     return db.query(ExchangeRate).filter(ExchangeRate.id == exchange_rate_id).first()
-
 
 def update_exchange_rate(db: Session, exchange_rate_id: int, exchange_rate_data: ExchangeRateCreate):
     exchange_rate = db.query(ExchangeRate).filter(ExchangeRate.id == exchange_rate_id).first()
@@ -36,7 +40,6 @@ def update_exchange_rate(db: Session, exchange_rate_id: int, exchange_rate_data:
     db.refresh(exchange_rate)
 
     return exchange_rate
-
 
 def delete_exchange_rate(db: Session, exchange_rate_id: int):
     exchange_rate = db.query(ExchangeRate).filter(ExchangeRate.id == exchange_rate_id).first()

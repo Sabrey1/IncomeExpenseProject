@@ -4,7 +4,6 @@ class IncomeTypeCreate(BaseModel):
     name: str
     description: str
 
-
 class IncomeTypeResponse(BaseModel):
     id: int
     name: str

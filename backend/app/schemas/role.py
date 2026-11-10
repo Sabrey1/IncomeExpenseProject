@@ -5,7 +5,6 @@ class RoleCreate(BaseModel):
     description: str
     is_enable: bool
 
-
 class RoleResponse(BaseModel):
     id: int
     name: str
